@@ -17,9 +17,13 @@ angular.module('myo')
 }
 
   $scope.submit = function(user){
+    var u = angular.copy(user);
+    delete u.__v;
+    delete u.createdAt;
     console.log(user);
-    User.save(user)
-    .then(function(){
+    User.saveProfile(u)
+    .then(function(response){
+      console.log(response);
       $state.go('home');
     }).catch(function(){
       $window.swal({title: 'Profile Error', text: 'There was a problem saving your profile. Please try again.', type: 'error'});
