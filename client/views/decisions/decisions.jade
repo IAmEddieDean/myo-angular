@@ -1,4 +1,6 @@
-.row
-  .col-xs-5#Pic1(ng-click='click(left)' ng-style="{'background-image':'url(../../assets/jon.jpeg)'}")
-  .col-xs-1
-  .col-xs-5#Pic2(ng-click='click(right)' ng-style="{'background-image':'url(../../assets/jon.jpeg)'}")
+.container
+  .row
+    .col-xs-6(ng-click='choose(left)' ng-model='left')
+      img#Pic.thumbnail(ng-src='{{left.image}}')
+    .col-xs-6(ng-click='choose(right)' ng-model='right')
+      img#Pic.thumbnail(ng-src='{{right.image}}')

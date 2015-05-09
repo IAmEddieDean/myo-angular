@@ -29,5 +29,5 @@ angular.module('myo')
       $window.swal({title: 'Profile Error', text: 'There was a problem saving your profile. Please try again.', type: 'error'});
     });
   };
-  
+
 });
