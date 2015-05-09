@@ -59,7 +59,8 @@ angular.module('myo')
 
   $scope.choose = function(choice){
     $scope.userChoices.push(choice);
-    console.log($scope.userChoices);
+    getChoices('food');
+    console.log($scope.userChoices.keys());
     checkResults();
   };
   function checkResults(){
