@@ -47,7 +47,7 @@ var isProd = process.env.NODE_ENV === 'production';
 // --> TASKS ********************************** //
 
 gulp.task('build', ['clean:rev'], function(cb){
-  run('jade', 'lint', 'replace', 'copy', cb);
+  run('jade', 'lint', 'replace', 'copy', 'copy-myo', cb);
 });
 
 gulp.task('refresh', function(cb){
