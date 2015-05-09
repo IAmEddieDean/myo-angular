@@ -14,12 +14,12 @@ h1#dashboardTitle Result Details
       table.table-striped.table-hover
         thead
           tr
-            th Number
-            th Choice A
-            th Choice B
-            th User's Choice
+            th: h3 Number
+            th: h3 Choice A
+            th: h3 Choice B
+            th: h3 User's Choice
           tr(ng-repeat='choice in choices track by $index')
-            td {{$index + 1}}
-            td {{choice.a}}
-            td {{choice.b}}
-            td {{choice.user}}
+            td: h3 {{$index + 1}}
+            td: h3 {{choice.a}}
+            td: h3 {{choice.b}}
+            td: h3 {{choice.user}}

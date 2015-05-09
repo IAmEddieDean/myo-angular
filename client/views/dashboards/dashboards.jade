@@ -5,10 +5,10 @@ h1#dashboardTitle Dashboard
       table.table-striped.table-hover
         thead
           tr
-            th Decision
-            th Date
-            th Results
+            th: h3 Decision
+            th: h3 Date
+            th: h3 Results
           tr(ng-repeat='decision in decisions')
-            td: a(ui-sref='decisions-show({decisionId:decisionId})') {{decision.title}}
-            td {{decision.date | date:'yyy-MM-dd'}}
-            td {{decision.result}}
+            td: h3: a(ui-sref='decisions-show({decisionId:decisionId})') {{decision.title}}
+            td: h3 {{decision.date | date:'yyy-MM-dd'}}
+            td: h3 {{decision.result}}
