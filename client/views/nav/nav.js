@@ -25,7 +25,7 @@ angular.module('myo')
   };
 
   function goHome(){
-    $state.go('home');
+    $state.go('decisions-show');
   }
 
   function getDisplayName(data){

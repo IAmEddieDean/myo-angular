@@ -1,14 +1,14 @@
 h1#dashboardTitle Dashboard
 .row
   .col-xs-8.col-xs-offset-2
-    form(name='profileForm', novalidate)
+    form(name='dashboardForm', novalidate)
       table.table-striped.table-hover
         thead
           tr
             th Decision
             th Date
             th Results
-          tr(ng-repeat='decision in decisions' ng-click='show(decision)')
-            td {{decision.title}}
+          tr(ng-repeat='decision in decisions')
+            td: a(ui-sref='decisions-show({decisionId:decisionId})') {{decision.title}}
             td {{decision.date | date:'yyy-MM-dd'}}
             td {{decision.result}}
