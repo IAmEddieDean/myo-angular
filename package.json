@@ -28,6 +28,7 @@
     "gulp-util": "^3.0.4",
     "gulp-watch": "^4.2.4",
     "jshint-stylish": "^1.0.2",
+    "myo": "^1.5.0",
     "rimraf": "^2.3.3",
     "run-sequence": "^1.1.0"
   }
