@@ -1,5 +1,5 @@
 doctype html
-html(lang='en', ng-app='myo')
+html#htmlBody(lang='en', ng-app='myo')
   head
     meta(charset='utf-8')
     meta(http-equiv='X-UA-Compatible', content='IE=edge')
@@ -12,8 +12,8 @@ html(lang='en', ng-app='myo')
     link(rel='stylesheet', href=isProd ? '/index.min.css' : '/index.css')
     link(rel='shortcut icon', href='/favicon.ico')
   body
-    include views/nav/nav
-    .container-fluid
+    .container-fluid#mainIndex
+      include views/nav/nav
       .row
         .col-xs-12
           div(ui-view)
