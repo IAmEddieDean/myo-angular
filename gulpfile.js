@@ -30,6 +30,7 @@ var paths = {
   filesrc:  ['./client/**/*'],
   jadesrc:  ['./client/**/*.jade'],
   htmlsrc:  ['./public/**/*.html'],
+  myosrc:   ['./node_modules/**/*'],
   lesssrc:  ['./client/index.less'],
   codesrc:  ['./client/**/*.js'],
   mediasrc: ['./client/assets/**/*', './client/favicon.ico'],
@@ -145,6 +146,13 @@ gulp.task('lint-self', function() {
 
 gulp.task('copy', function() {
   return gulp.src(paths.mediasrc)
+    .pipe(copy(paths.destination, {prefix:1}))
+    .on('error', util.log);
+});
+
+// custom copy to move Myo npm files from node_modules to ./public
+gulp.task('copy-myo', function() {
+  return gulp.src(paths.myosrc)
     .pipe(copy(paths.destination, {prefix:1}))
     .on('error', util.log);
 });
