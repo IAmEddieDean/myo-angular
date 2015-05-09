@@ -1,0 +1,25 @@
+h1#dashboardTitle Result Details
+.row
+  .col-xs-4
+    h3 Decision Title
+    h3 {{decision.title}}
+  .col-xs-4
+    h3 Decision Date Taken
+    h3 {{decision.date | date:'yyy-MM-dd'}}
+  .col-xs-4
+    h3 Decision Results
+    h3 {{decision.result}}
+.row
+  .col-xs-8.col-xs-offset-2
+      table.table-striped.table-hover
+        thead
+          tr
+            th Number
+            th Choice A
+            th Choice B
+            th User's Choice
+          tr(ng-repeat='choice in choices track by $index')
+            td {{$index + 1}}
+            td {{choice.a}}
+            td {{choice.b}}
+            td {{choice.user}}
