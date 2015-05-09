@@ -1,7 +1,20 @@
 'use strict';
 
+
+
 angular.module('myo')
-.controller('DecisionsCtrl', function($scope, $state, User, $window){
+.controller('DecisionsCtrl', function($rootScope, $scope, $state, User){
+
+  $scope.choose = function(side){
+    if (side === 'right'){
+      userChoices.push($scope.right);
+      getChoices('food');
+    }else{
+      userChoices.push($scope.left);
+      getChoices('food');
+    }
+  };
+
   var choices = {
     foods: {
       good: ['salad', 'grilledChicken', 'fish', 'vegetables'],
@@ -67,67 +80,63 @@ angular.module('myo')
     var len = options.good.length;
     var indexA = Math.ceil(Math.random() * len) -1;
     var indexB = Math.ceil(Math.random() * len) -1;
-    var left = {};
-    var right = {};
 
     if(rand % 2){
-      left.image = choiceInfo[options.good[indexA]].url;
-      right.image = choiceInfo[options.bad[indexB]].url;
+      $rootScope.left = choiceInfo[options.good[indexA]];
+      $rootScope.right = choiceInfo[options.bad[indexB]];
+      console.log($scope.left.url);
+      console.log($scope.right.url);
     }else{
-      left.image = choiceInfo[options.good[indexB]].url;
-      right.image = choiceInfo[options.bad[indexA]].url;
+      $scope.left = choiceInfo[options.good[indexB]];
+      $scope.right = choiceInfo[options.bad[indexA]];
+      console.log($scope.left.url);
+      console.log($scope.right.url);
     }
-    $scope.left = left;
-    $scope.right = right;
   }
 
-  $scope.good = 0;
-  $scope.bad = 0;
-  $scope.userChoices = [];
+  var userChoices = [];
 
-  // $scope.click = function(choice){
+  // $scope.choose = function(event){
+  //   console.log(event);
+  //   var choice = event;
+  //   if(choice === 82){
   //
+  //   }else if(choice === 76){
+  //   }
+  //   checkResults();
   // };
 
-  function choose(choice){
-    if(choice === 'RIGHT'){
-    $scope.userChoices.push($scope.right);
-  }else{
-    $scope.userChoices.push($scope.left);
-  }
-    console.log($scope.userChoices);
-    getChoices('food');
-    checkResults();
-  }
   function checkResults(){
-    if($scope.userChoices.length === choices.foods.good.length){
-      User.saveResults($scope.userChoices)
+    if(userChoices.length === choices.foods.good.length){
+      User.saveResults(userChoices)
       .then(function(response){
         console.log(response);
         $state.go('results');
       });
     }
   }
-  var myMyo = $window.Myo.create();
-  myMyo.on('connected', function () {
-    myMyo.setLockingPolicy('none');
-  });
 
-  var left = 0;
-  var right = 0;
+  // $scope.myMyo = $window.Myo.create();
+  // $scope.myMyo.on('connected', function () {
+  //   $scope.myMyo.setLockingPolicy('none');
+  // });
+  //
+  // $scope.myMyo.on('wave_in', function(){
+  //   console.log('left');
+  //   // $scope.myMyo.off('wave_in', function(){
+  //   // //   $scope.myMyo.off('wave_out',function(){
+  //   //     $scope.choose('left');
+  //   // //   });
+  //   // });
+  // });
+  //
+  // $scope.myMyo.on('wave_out', function(){
+  //   console.log('right');
+  //   // $scope.myMyo.off('wave_out',function(){
+  //   // //   $scope.myMyo.off('wave_in',function(){
+  //   //     $scope.choose('right');
+  //   // //   });
+  //   // });
+  // });
 
-  myMyo.on('wave_in', function(){
-    left+=1;
-    if(left>=2){
-      choose('LEFT');
-      left = 0;
-    }
-  });
-  myMyo.on('wave_out', function(){
-    right+=1;
-    if(right>=2){
-      choose('RIGHT');
-      right = 0;
-    }
-  });
 });
