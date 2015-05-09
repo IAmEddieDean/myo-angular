@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('myo')
-.controller('ProfileCtrl', function($scope, User, $state, $window){
+.controller('ProfilesCtrl', function($scope, User, $state, $window){
 
   checkProfile();
   $scope.isEdit = false;
@@ -17,6 +17,7 @@ angular.module('myo')
 }
 
   $scope.submit = function(user){
+    console.log(user);
     User.save(user)
     .then(function(){
       $state.go('home');
@@ -25,4 +26,4 @@ angular.module('myo')
     });
   };
   
-});  
+});
