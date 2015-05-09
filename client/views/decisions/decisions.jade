@@ -1,6 +1,6 @@
 .container
   .row
     .col-xs-6(ng-click='choose(left)' ng-model='left')
-      img#Pic.thumbnail(ng-src='{{left.image}}')
+      img#Pic.thumbnail.img-responsive(ng-src='{{left.image}}')
     .col-xs-6(ng-click='choose(right)' ng-model='right')
-      img#Pic.thumbnail(ng-src='{{right.image}}')
+      img#Pic.thumbnail.img-responsive(ng-src='{{right.image}}')
