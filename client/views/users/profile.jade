@@ -1,0 +1,23 @@
+h3 PROFILE
+
+.row
+  .col-xs-4
+    form(name='profileForm', novalidate)
+      .form-group
+        label(for='age') Your Age
+        input.form-control#age(type='number', name='age', ng-model='user.age')
+      .form-group
+        label(for='sex') Sex
+        input.form-control#handle(type='text', name='sex', ng-model='user.sex')
+      .form-group
+        label(for='email') Email
+        input.form-control#handle(type='text', name='email', ng-model='user.email')
+      .form-group
+        label(for='twitter') Twitter Handle
+        input.form-control#handle(type='text', name='twitter', ng-model='user.twitter')
+      
+    
+      .form-group
+        button.btn.btn-primary(ng-hide='isEdit' ng-click='submit(user)') Save Profile
+      .form-group
+        button.btn.btn-primary(ng-show='isEdit' ng-click='submit(user)') Save Edit
