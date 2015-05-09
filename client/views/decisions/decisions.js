@@ -3,7 +3,7 @@
 
 
 angular.module('myo')
-.controller('DecisionsCtrl', function($rootScope, $scope, $state, User){
+.controller('DecisionsCtrl', function($rootScope, $scope, $state, User, $window){
 
   $scope.choose = function(side){
     if (side === 'right'){
@@ -13,6 +13,7 @@ angular.module('myo')
       userChoices.push($scope.left);
       getChoices('food');
     }
+    checkResults();
   };
 
   var choices = {
@@ -71,7 +72,6 @@ angular.module('myo')
     switch (category){
       case 'food':
         showChoices(choices.foods);
-        break;
     }
   }
 
@@ -82,15 +82,15 @@ angular.module('myo')
     var indexB = Math.ceil(Math.random() * len) -1;
 
     if(rand % 2){
-      $rootScope.left = choiceInfo[options.good[indexA]];
-      $rootScope.right = choiceInfo[options.bad[indexB]];
-      console.log($scope.left.url);
-      console.log($scope.right.url);
+      $scope.left = choiceInfo[options.good[indexA]];
+      $scope.right = choiceInfo[options.bad[indexB]];
+      // console.log($scope.left.url);
+      // console.log($scope.right.url);
     }else{
       $scope.left = choiceInfo[options.good[indexB]];
       $scope.right = choiceInfo[options.bad[indexA]];
-      console.log($scope.left.url);
-      console.log($scope.right.url);
+      // console.log($scope.left.url);
+      // console.log($scope.right.url);
     }
   }
 
@@ -103,40 +103,33 @@ angular.module('myo')
   //
   //   }else if(choice === 76){
   //   }
-  //   checkResults();
+  //
   // };
 
   function checkResults(){
-    if(userChoices.length === choices.foods.good.length){
-      User.saveResults(userChoices)
-      .then(function(response){
-        console.log(response);
-        $state.go('results');
-      });
+    if(userChoices.length === choices.foods.good.length + 1){
+      console.log('reached limit');
+      // User.saveResults(userChoices)
+      // .then(function(response){
+      //   $state.go('results');
+      // });
     }
+    userChoices = [];
   }
 
-  // $scope.myMyo = $window.Myo.create();
-  // $scope.myMyo.on('connected', function () {
-  //   $scope.myMyo.setLockingPolicy('none');
-  // });
-  //
-  // $scope.myMyo.on('wave_in', function(){
-  //   console.log('left');
-  //   // $scope.myMyo.off('wave_in', function(){
-  //   // //   $scope.myMyo.off('wave_out',function(){
-  //   //     $scope.choose('left');
-  //   // //   });
-  //   // });
-  // });
-  //
-  // $scope.myMyo.on('wave_out', function(){
-  //   console.log('right');
-  //   // $scope.myMyo.off('wave_out',function(){
-  //   // //   $scope.myMyo.off('wave_in',function(){
-  //   //     $scope.choose('right');
-  //   // //   });
-  //   // });
-  // });
+  var myMyo = $window.Myo.create();
+  myMyo.on('connected', function () {
+    myMyo.setLockingPolicy('none');
+  });
+
+  myMyo.on('wave_in', function(){
+    console.log('left');
+    $scope.choose('left');
+  });
+
+  myMyo.on('wave_out', function(){
+    console.log('right');
+    $scope.choose('right');
+  });
 
 });
