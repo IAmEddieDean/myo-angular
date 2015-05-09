@@ -36,10 +36,19 @@ angular.module('myo')
   
   $scope.good = 0;
   $scope.bad = 0;
-  $scope.choices = [];
+  $scope.userChoices = [];
   
-  $scope.click = function(choice){
-    
+  $scope.choose = function(choice){
+    $scope.choices.push(choice);
+    checkResults();
   };
-
+  function checkResults(){
+    if($scope.userChoices.length === choices.foods.good.length){
+      User.saveResults($scope.userChoices)
+      .then(function(response){
+        console.log(response);
+        $state.go('results');
+      });
+    }
+  }
 });
