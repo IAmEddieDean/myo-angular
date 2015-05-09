@@ -8,7 +8,9 @@ h3 PROFILE
         input.form-control#age(type='number', name='age', ng-model='user.age')
       .form-group
         label(for='sex') Sex
-        input.form-control#handle(type='text', name='sex', ng-model='user.sex')
+        select.form-control#sex(type='text', name='sex', ng-model='user.sex')
+          option Male
+          option Female
       .form-group
         label(for='email') Email
         input.form-control#handle(type='text', name='email', ng-model='user.email')
