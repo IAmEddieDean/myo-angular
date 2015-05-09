@@ -4,15 +4,15 @@ h3 {{name | uppercase}}
   .col-xs-4
     form(name='userForm', novalidate)
       .form-group
-        label(for='email') Email
+        label: h5(for='email') Email
         input.form-control#email(type='email', name='email', ng-model='user.email')
       .form-group
-        label(for='password') Password
+        label: h5(for='password') Password
         input.form-control#password(type='password', name='password', ng-model='user.password')
       .form-group
-        button.btn.btn-default(ng-click='submit(user)') Email Login
-        button.btn.btn-info(ng-click='oauth("twitter")'): i.fa.fa-twitter
-        button.btn.btn-danger(ng-click='oauth("google")'): i.fa.fa-google
-        button.btn.btn-primary(ng-click='oauth("facebook")'): i.fa.fa-facebook
-        button.btn.btn-default(ng-click='oauth("github")'): i.fa.fa-github
+        button.btn.btn-success#startButton(ng-click='submit(user)') Email Login
+        button.btn.btn-info#loginButton(ng-click='oauth("twitter")'): i.fa.fa-twitter
+        button.btn.btn-danger#loginButton(ng-click='oauth("google")'): i.fa.fa-google
+        button.btn.btn-primary#loginButton(ng-click='oauth("facebook")'): i.fa.fa-facebook
+        button.btn.btn-default#loginButton(ng-click='oauth("github")'): i.fa.fa-github
   .col-xs-8
