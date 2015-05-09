@@ -10,14 +10,46 @@ angular.module('myo')
   };
 
   var choiceInfo = {
-    salad: '/assets/salad.jpg',
-    grilledChicken: '/assets/grilled-chicken.jpg',
-    fish: '/assets/salmon.jpg',
-    vegetables: '/assets/vegetables.jpg',
-    innNout: '/assets/inn-n-out.jpg',
-    macAndCheese: '/assets/mac-and-cheese.jpg',
-    iceCream: '/assets/ice-cream.jpg',
-    chimichangas: '/assets/chimichangas.jpg'
+    salad: {
+      url: '/assets/salad.jpg',
+      name: 'Salad',
+      type: 'good'
+    },
+    grilledChicken: {
+      url: '/assets/grilled-chicken.jpg',
+      name: 'Grilled Chicken',
+      type: 'good'
+    },
+    fish: {
+      url: '/assets/salmon.jpg',
+      name: 'Salmon',
+      type: 'good'
+    },
+    vegetables: {
+      url: '/assets/vegetables.jpg',
+      name: 'Vegetables',
+      type: 'good'
+    },
+    innNout: {
+      url: '/assets/inn-n-out.jpg',
+      name: 'Inn n Out',
+      type: 'bad'
+    },
+    macAndCheese: {
+      url: '/assets/mac-and-cheese.jpg',
+      name: 'Mac and Cheese',
+      type: 'bad'
+    },
+    iceCream: {
+      url: '/assets/ice-cream.jpg',
+      name: 'Ice Cream',
+      type: 'bad'
+    },
+    chimichangas: {
+      url: '/assets/chimichangas.jpg',
+      name: 'Chimichangas',
+      type: 'bad'
+    }
   };
 
   getChoices('food');
@@ -39,11 +71,11 @@ angular.module('myo')
     var right = {};
 
     if(rand % 2){
-      left.image = choiceInfo[options.good[indexA]];
-      right.image = choiceInfo[options.bad[indexB]];
+      left.image = choiceInfo[options.good[indexA]].url;
+      right.image = choiceInfo[options.bad[indexB]].url;
     }else{
-      left.image = choiceInfo[options.good[indexB]];
-      right.image = choiceInfo[options.bad[indexA]];
+      left.image = choiceInfo[options.good[indexB]].url;
+      right.image = choiceInfo[options.bad[indexA]].url;
     }
     $scope.left = left;
     $scope.right = right;
@@ -59,14 +91,13 @@ angular.module('myo')
 
   $scope.choose = function(choice){
     $scope.userChoices.push(choice);
-    console.log($scope.userChoices);
+    getChoices('food');
     checkResults();
   };
   function checkResults(){
     if($scope.userChoices.length === choices.foods.good.length){
       User.saveResults($scope.userChoices)
       .then(function(response){
-        console.log(response);
         $state.go('results');
       });
     }
