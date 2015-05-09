@@ -30,7 +30,7 @@ var paths = {
   filesrc:  ['./client/**/*'],
   jadesrc:  ['./client/**/*.jade'],
   htmlsrc:  ['./public/**/*.html'],
-  myosrc:   ['./node_modules/**/*'],
+  myosrc:   ['./node_modules/myo/**/*'],
   lesssrc:  ['./client/index.less'],
   codesrc:  ['./client/**/*.js'],
   mediasrc: ['./client/assets/**/*', './client/favicon.ico'],
