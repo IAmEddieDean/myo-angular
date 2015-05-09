@@ -34,7 +34,9 @@ angular.module('myo')
     }
   }
   
-  
+  $scope.good = 0;
+  $scope.bad = 0;
+  $scope.choices = [];
   
   $scope.click = function(choice){
     
