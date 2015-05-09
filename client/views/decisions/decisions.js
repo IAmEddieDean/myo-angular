@@ -53,8 +53,13 @@ angular.module('myo')
   $scope.bad = 0;
   $scope.userChoices = [];
 
+  $scope.click = function(choice){
+
+  };
+
   $scope.choose = function(choice){
-    $scope.choices.push(choice);
+    $scope.userChoices.push(choice);
+    console.log($scope.userChoices);
     checkResults();
   };
   function checkResults(){
