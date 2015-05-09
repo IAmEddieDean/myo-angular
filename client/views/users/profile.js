@@ -18,7 +18,7 @@ angular.module('myo')
 
   $scope.submit = function(user){
     console.log(user);
-    User.save(user)
+    User.saveProfile(user)
     .then(function(){
       $state.go('home');
     }).catch(function(){

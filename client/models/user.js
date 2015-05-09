@@ -10,6 +10,9 @@ angular.module('myo')
     return $http.post(nodeUrl + '/users');
   };
   User.save = function(user){
+    return $http.post(nodeUrl + '/users/' + $rootScope.activeUser.mongoId, user);
+  };
+  User.saveProfile = function(user){
     return $http.put(nodeUrl + '/users/' + $rootScope.activeUser.mongoId, user);
   };
   User.getProfile = function(){
