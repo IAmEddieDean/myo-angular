@@ -10,6 +10,7 @@ nav.navbar.navbar-inverse(ng-controller='NavCtrl')
     #navbar.collapse.navbar-collapse
       ul.nav.navbar-nav.navbar-left(ng-show='activeUser')
         li: a(ui-sref='decisions'): i.fa.fa.fa-cubes &nbsp; Decisions
+        li: a(ui-sref='dashboards'): i.fa.fa.fa-cubes &nbsp; Dashboard
       ul.nav.navbar-nav.navbar-right(ng-show='activeUser')
         li: a(ui-sref='home'): i.fa.fa.fa-home &nbsp; Home
         li: a(ui-sref='about'): i.fa.fa.fa-info &nbsp; About
